@@ -4,6 +4,9 @@ const express = require('express');
 const path = require('path');
 
 // Create the Express app
+
+const todoDb = require('./data/Todo-db');
+
 const app = express();
   
 // Configure the app (app.set)
@@ -18,7 +21,7 @@ app.set('views', path.join(__dirname, 'views'));
 //   res.send('<h1>Hello Express! Its me Cesar!</h1>');
 // });
   
-const todoDb = require('./data/Todo-db');
+
 
 app.get('/todos', function(req, res) {
     res.render('views/todos/index.ejs', {
@@ -26,7 +29,9 @@ app.get('/todos', function(req, res) {
     });
   });
 
-
+  app.get('/', function (req, res) {
+    res.render('home')
+})
 
   app.get('/', function(req, res) {
     res.redirect('/todos');
